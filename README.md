@@ -6,6 +6,9 @@ Transform the internet into a structured database. This full-stack application l
 
 Instead of manually scraping websites or dealing with messy HTML, you can simply describe what you want to find and get back organized data. Want to find the best laptops under $1000? Just ask, and get back a list with names, prices, and ratings. Looking for upcoming tech conferences? Get dates, locations, and ticket prices in a structured format.
 
+## Demo 
+https://github.com/user-attachments/assets/e81e90a3-cd8b-469e-8dd9-530be4862ddc
+
 ## Tech Stack
 
 **Frontend**: Next.js 15 with TypeScript, TailwindCSS for styling, and CodeMirror for the code editor
