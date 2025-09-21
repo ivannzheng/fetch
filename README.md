@@ -99,12 +99,25 @@ Here are some examples of what you can search for:
 
 ## How It Works
 
-The system follows a four-step process:
+The system follows a sophisticated four-step pipeline that combines web search, content extraction, semantic analysis, and AI-powered parsing:
 
-1. **Web Search**: Uses Google Custom Search to find the most relevant URLs for your query
-2. **Content Extraction**: Downloads and cleans the HTML content from the top 10 results
-3. **AI Processing**: Uses Gemini AI to understand the content and extract data matching your schema
-4. **Result Formatting**: Returns all the extracted data in a clean JSON format
+### 1. Google Custom Search API
+The process begins by sending your query to Google's Custom Search API, which returns the top 10 most relevant URLs. This ensures we're working with high-quality, authoritative sources rather than random web pages.
+
+### 2. Beautiful Soup Content Extraction
+Once we have the URLs, the system uses **httpx** to fetch the HTML content from each page in parallel, then **Beautiful Soup** to parse and clean the raw HTML. This step removes all the noise - navigation menus, ads, scripts, and styling - leaving only the meaningful text content.
+
+### 3. RAG Pipeline with Semantic Search
+The cleaned content then goes through a **Retrieval-Augmented Generation (RAG)** pipeline:
+- **Text Chunking**: Content is split into manageable 500-word chunks
+- **Embedding Generation**: Each chunk is converted to a 768-dimensional vector using Google's Gemini embedding model
+- **Semantic Similarity**: **NumPy** and **scikit-learn** calculate cosine similarity between your query and each content chunk
+- **Relevant Content Retrieval**: Only the most semantically relevant chunks are selected for processing
+
+### 4. Gemini AI Data Extraction
+Finally, the most relevant content chunks are sent to **Gemini 2.5 Pro** with a carefully crafted prompt that includes your query, desired schema, and the cleaned content. The AI then extracts structured data that matches your exact specifications, returning clean JSON results.
+
+This approach ensures you get accurate, relevant data by combining the power of Google's search algorithms, semantic understanding through embeddings, and advanced AI reasoning - all while processing content in real-time with streaming updates.
 
 ## Project Structure
 
